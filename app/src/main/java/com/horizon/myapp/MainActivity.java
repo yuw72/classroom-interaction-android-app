@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -25,13 +26,16 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private Button buttonRegister;
     private EditText editTextEmail;
     private EditText editTextPassword;
     private TextView textViewSignin;
-
+    private CheckBox checkBoxProfessor;
+    private CheckBox checkBoxStudent;
     private ProgressDialog progressDialog;
 
     private FirebaseAuth firebaseAuth;
@@ -56,6 +60,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         buttonRegister.setOnClickListener(this);
         textViewSignin.setOnClickListener(this);
 
+        checkBoxProfessor = (CheckBox)findViewById(R.id.checkBoxProfessor);
+        checkBoxStudent = (CheckBox)findViewById(R.id.checkBoxStudent);
     }
 
     @Override
@@ -83,6 +89,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void  registerUser(){
         String email = editTextEmail.getText().toString().trim();
         String password = editTextPassword.getText().toString().trim();
+        if(!checkBoxStudent.isChecked() && !checkBoxProfessor.isChecked()) {
+            Toast.makeText(this,"please check select your role",Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if(checkBoxStudent.isChecked() && checkBoxProfessor.isChecked()) {
+            Toast.makeText(this,"please check select one role only",Toast.LENGTH_SHORT).show();
+            return;
+        }
         if(TextUtils.isEmpty(email)) {
             Toast.makeText(this,"please enter email",Toast.LENGTH_SHORT).show();
             return;
@@ -105,18 +119,49 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
                         }else{
 
-                            Exception e = task.getException();
-                            Toast.makeText(MainActivity.this, "Failed Registration: "+e.getMessage(), Toast.LENGTH_SHORT).show();
-                            Log.e("LoginActivity", "Failed Registration", e);
-                            return;
+
+                            Toast.makeText(MainActivity.this, "Failed Registration: ", Toast.LENGTH_SHORT).show();
+
+
                         }
                     }
                 });
     }
 
+    private void storeUser() {
+        String role = "1";
+        if(!checkBoxStudent.isChecked() && !checkBoxProfessor.isChecked()) {
+            //Toast.makeText(this,"please check select your role",Toast.LENGTH_SHORT).show();
+            ;
+        }
+        else if(checkBoxStudent.isChecked() && checkBoxProfessor.isChecked()) {
+            //Toast.makeText(this,"please check select one role only",Toast.LENGTH_SHORT).show();
+            return;
+        }
+        else if(checkBoxStudent.isChecked() && !checkBoxProfessor.isChecked()) {
+            //Toast.makeText(this,"please check select one role only",Toast.LENGTH_SHORT).show();
+            role = "2";
+        }
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference();
+        String email = editTextEmail.getText().toString().trim();
+        String username = separateEmail(email);
+        try {
+            myRef.child("roles").child(username).setValue(role);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private String separateEmail(String email){
+            String[] stringList = email.split("@");
+            return stringList[0];
+    }
     @Override
     public void onClick(View view) {
         if(view == buttonRegister){
+            storeUser();
             registerUser();
         }
         if(view==textViewSignin){
@@ -126,4 +171,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
            // startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
         }
     }
+
+
 }

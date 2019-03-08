@@ -17,6 +17,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
     private Button buttonSignin;
@@ -27,6 +32,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private ProgressDialog progressDialog;
 
     private FirebaseAuth firebaseAuth;
+
+    private int userRole;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,8 +57,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
 
     }
+
+    private String separateEmail(String email){
+        String[] stringList = email.split("@");
+        return stringList[0];
+    }
+
     private void userLogin() {
-        String email = editTextEmail.getText().toString().trim();
+        final String email = editTextEmail.getText().toString().trim();
         String password = editTextPassword.getText().toString().trim();
         if (TextUtils.isEmpty(email)) {
             Toast.makeText(this, "please enter email", Toast.LENGTH_SHORT).show();
@@ -70,16 +83,45 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         progressDialog.dismiss();
                         if(task.isSuccessful()){
-                            finish();
-                            startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
-                            //start profile activity
+                            String username = separateEmail(email);
+                            userRole(username);
+
+
                         }else{
-
-
+                            return;
                         }
                     }
                 });
+
+        //Toast.makeText(this, "email or password is incorrect", Toast.LENGTH_SHORT).show();
     }
+
+    private void userRole(String username) {
+        DatabaseReference myRef  = FirebaseDatabase.getInstance().getReference("roles").child(username);
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String role=dataSnapshot.getValue(String.class);
+                int cmp_role = Integer.parseInt(role);
+                Log.d("role value is", "cmp_role is" + cmp_role);
+                if(cmp_role == 1) {
+                    //start profile activity
+                    finish();
+                    startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+                }
+                else{
+                    Log.i("notice","you are student "+role);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.w("database error", "loadPost:onCancelled", databaseError.toException());
+            }
+        });
+
+    }
+
     @Override
     public void onClick(View view) {
         if(view == buttonSignin) {

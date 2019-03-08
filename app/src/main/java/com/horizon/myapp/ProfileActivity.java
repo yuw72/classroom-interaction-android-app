@@ -57,7 +57,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 int id=dataSnapshot.getValue(Integer.class);
-                textViewID.setText(id);
+                textViewID.setText(String.valueOf(id));
             }
 
             @Override
