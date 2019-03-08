@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "519222005354",
+    "firebase_url": "https://downhat-80eae.firebaseio.com",
+    "project_id": "downhat-80eae",
+    "storage_bucket": "downhat-80eae.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:519222005354:android:47c8d61199a225e0",
+        "android_client_info": {
+          "package_name": "com.horizon.myapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "519222005354-2pouktk168qg8nksch3gvktcrp9vgd8f.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.horizon.myapp",
+            "certificate_hash": "0b9b7eebcc0b832cff7938524b0a47dead8b4659"
+          }
+        },
+        {
+          "client_id": "519222005354-dsqasqetc9h511ba119poc0hoo72m96f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDRnMMvQ2Y5pge6pfydKZc0I_oEjMoyc9k"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "519222005354-dsqasqetc9h511ba119poc0hoo72m96f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
