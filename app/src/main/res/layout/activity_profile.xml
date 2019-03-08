@@ -14,7 +14,8 @@
         android:layout_marginBottom="0dp"
         android:orientation="vertical"
         tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="8dp">
+        tools:layout_editor_absoluteY="8dp"
+        android:layout_alignParentLeft="true">
 
         <TextView
             android:id="@+id/textViewUserEmail"
@@ -30,6 +31,14 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:text="sendData" />
+
+        <TextView
+            android:id="@+id/showID"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="TextView"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <Button
             android:id="@+id/buttonLogout"

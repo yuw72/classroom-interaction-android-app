@@ -2,6 +2,7 @@ package com.horizon.myapp;
 
 import android.content.Intent;
 import android.speech.tts.TextToSpeech;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -23,6 +24,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     private TextView textViewUserEmail;
     private Button buttonLogout;
     private Button buttonSendData;
+    private TextView textViewID;
 
 
     @Override
@@ -42,9 +44,33 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
         buttonLogout = (Button)findViewById(R.id.buttonLogout);
         buttonLogout.setOnClickListener(this);
+
+        textViewID = (TextView)findViewById(R.id.showID);
+
         buttonSendData = (Button)findViewById(R.id.sendData);
         buttonSendData.setOnClickListener(this);
+
+        DatabaseReference myRef  = FirebaseDatabase.getInstance().getReference("Users/user/ID");
+
+
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                int id=dataSnapshot.getValue(Integer.class);
+                textViewID.setText(id);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.w("database error", "loadPost:onCancelled", databaseError.toException());
+            }
+        });
+
+
+
     }
+
+
     private void write_to_database() {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference();
