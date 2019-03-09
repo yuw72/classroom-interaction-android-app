@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -23,17 +24,24 @@ import com.google.firebase.database.ValueEventListener;
 public class studentActivity extends AppCompatActivity implements View.OnClickListener{
     private EditText editTextClass;
     private Button buttonJoin;
+    private Button buttonSignout;
     private String result;
+    private FirebaseAuth firebaseAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        firebaseAuth = FirebaseAuth.getInstance();
+
         editTextClass = (EditText)findViewById(R.id.editTextClass);
         buttonJoin = (Button)findViewById(R.id.buttonJoin);
+        buttonSignout = (Button)findViewById(R.id.buttonSignout);
 
         buttonJoin.setOnClickListener(this);
+        buttonSignout.setOnClickListener(this);
 
     }
 
@@ -72,6 +80,12 @@ public class studentActivity extends AppCompatActivity implements View.OnClickLi
         if(view == buttonJoin)
         {
             joinClass();
+        }
+        else if(view == buttonSignout)
+        {
+            firebaseAuth.signOut();
+            finish();
+            startActivity(new Intent(this, LoginActivity.class));
         }
     }
 

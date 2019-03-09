@@ -38,7 +38,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
- //       firebaseAuth = FirebaseAuth.getInstance();
+        firebaseAuth = FirebaseAuth.getInstance();
 //        if(firebaseAuth.getCurrentUser() != null) {
 //            //get profile activity
 //            finish();
@@ -82,13 +82,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         progressDialog.dismiss();
-                        if(task.isSuccessful()){
+                        if(task.isSuccessful()) {
                             String username = separateEmail(email);
                             userRole(username);
-
-
-                        }else{
-                            return;
                         }
                     }
                 });
