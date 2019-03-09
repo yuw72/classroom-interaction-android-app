@@ -38,12 +38,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        firebaseAuth = FirebaseAuth.getInstance();
-        if(firebaseAuth.getCurrentUser() != null) {
-            //get profile activity
-            finish();
-            startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
-        }
+ //       firebaseAuth = FirebaseAuth.getInstance();
+//        if(firebaseAuth.getCurrentUser() != null) {
+//            //get profile activity
+//            finish();
+//            startActivity(new Intent(getApplicationContext(), studentActivity.class));
+//        }
         progressDialog = new ProgressDialog(this);
 
         buttonSignin = (Button) findViewById(R.id.buttonSignin);
@@ -107,10 +107,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 if(cmp_role == 1) {
                     //start profile activity
                     finish();
-                    startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+                    startActivity(new Intent(getApplicationContext(), professorActivity.class));
                 }
                 else{
-                    Log.i("notice","you are student "+role);
+                    finish();
+                    startActivity(new Intent(getApplicationContext(),studentActivity.class));
+
                 }
             }
 

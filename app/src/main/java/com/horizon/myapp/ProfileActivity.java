@@ -25,6 +25,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     private Button buttonLogout;
     private Button buttonSendData;
     private TextView textViewID;
+    private TextView textViewResult;
 
 
     @Override
@@ -32,6 +33,11 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         firebaseAuth = FirebaseAuth.getInstance();
+
+        textViewResult = (TextView)findViewById(R.id.textViewResult);
+        Intent intent = getIntent();
+        String str = intent.getStringExtra("result");
+        textViewResult.setText(str);
 
 
         if(firebaseAuth.getCurrentUser()==null){
@@ -49,6 +55,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
         buttonSendData = (Button)findViewById(R.id.sendData);
         buttonSendData.setOnClickListener(this);
+
 
         DatabaseReference myRef  = FirebaseDatabase.getInstance().getReference("Users/user/ID");
 
@@ -69,7 +76,20 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
 
     }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
+        if (requestCode == 1) {
+            if(resultCode == ProfileActivity.RESULT_OK){
+                String result=data.getStringExtra("result");
+                Log.d("result","result is "+result);
+            }
+            if (resultCode == ProfileActivity.RESULT_CANCELED) {
+                //Write your code if there's no result
+                Log.d("testing", "result is cancelled");
+            }
+        }
+    }//onActivityResult
 
     private void write_to_database() {
         FirebaseDatabase database = FirebaseDatabase.getInstance();

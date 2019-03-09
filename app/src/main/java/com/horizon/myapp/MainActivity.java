@@ -46,9 +46,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         firebaseAuth = FirebaseAuth.getInstance();
-        if(firebaseAuth.getCurrentUser()!=null) {
+        if(firebaseAuth.getCurrentUser()!= null) {
             finish();
-            startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+            startActivity(new Intent(getApplicationContext(), studentActivity.class));
         }
         progressDialog = new ProgressDialog(this);
 
