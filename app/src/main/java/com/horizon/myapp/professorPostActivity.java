@@ -44,6 +44,7 @@ public class professorPostActivity extends AppCompatActivity implements View.OnC
 
         Intent intent = getIntent();
         String className = intent.getStringExtra("result");
+       // String className = globalVar.className;
         firebaseAuth = FirebaseAuth.getInstance();
 
         FloatingActionButton backButton = findViewById(R.id.floatingActionProfessorButtonBack);

@@ -61,6 +61,7 @@ public class studentActivity extends AppCompatActivity implements View.OnClickLi
                 {
                     Intent classIntent = new Intent(getApplicationContext(),studentPostActivity.class);
                     classIntent.putExtra("result",className);
+                    globalVar.className = className;
                     finish();
                     startActivity(classIntent);
                 }

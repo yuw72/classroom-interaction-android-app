@@ -78,6 +78,7 @@ public class professorActivity extends AppCompatActivity implements View.OnClick
                 {
                     Intent classIntent = new Intent(getApplicationContext(),professorPostActivity.class);
                     classIntent.putExtra("result",className);
+                    globalVar.className = className;
                     finish();
                     startActivity(classIntent);
                 }
@@ -99,8 +100,8 @@ public class professorActivity extends AppCompatActivity implements View.OnClick
             Toast.makeText(this, "please enter class name", Toast.LENGTH_SHORT).show();
             return;
         }
-        final DatabaseReference myRef  = FirebaseDatabase.getInstance().getReference("Classes");
 
+        final DatabaseReference myRef  = FirebaseDatabase.getInstance().getReference("Classes");
 
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -112,6 +113,7 @@ public class professorActivity extends AppCompatActivity implements View.OnClick
                     add_database(className);
                     Intent classIntent = new Intent(getApplicationContext(),professorPostActivity.class);
                     classIntent.putExtra("result",className);
+                    globalVar.className = className;
                     finish();
                     startActivity(classIntent);
                 }
@@ -129,7 +131,6 @@ public class professorActivity extends AppCompatActivity implements View.OnClick
 
         try {
             mDatabase.child(className).child("id").setValue(1);
-            mDatabase.child(className).child("id").setValue("1");
         } catch (Exception e) {
             e.printStackTrace();
         }

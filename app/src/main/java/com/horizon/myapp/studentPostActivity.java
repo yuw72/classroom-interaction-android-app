@@ -37,6 +37,7 @@ public class studentPostActivity extends AppCompatActivity implements View.OnCli
         setSupportActionBar(toolbar);
         Intent intent = getIntent();
         String className = intent.getStringExtra("result");
+//        String className = globalVar.className;
         firebaseAuth = FirebaseAuth.getInstance();
 
         FloatingActionButton backButton = findViewById(R.id.floatingActionButtonBack);
