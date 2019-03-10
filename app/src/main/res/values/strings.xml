@@ -4,4 +4,6 @@
     <string name="title_activity_professor">professorActivity</string>
     <string name="title_activity_student">studentActivity</string>
     <string name="title_activity_student_post">studentPostActivity</string>
+    <string name="title_activity_professor_post">professorPostActivity</string>
+    <string name="title_activity_answer_post">AnswerPostActivity</string>
 </resources>

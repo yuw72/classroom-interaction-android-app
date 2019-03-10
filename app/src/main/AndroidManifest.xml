@@ -12,9 +12,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".AnswerPostActivity"
+            android:label="@string/title_activity_answer_post"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".professorPostActivity"
+            android:label="@string/title_activity_professor_post"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".studentPostActivity"
             android:label="@string/title_activity_student_post"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".studentActivity"
             android:label="@string/title_activity_student"
