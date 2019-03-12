@@ -32,7 +32,8 @@
         android:layout_marginTop="209dp"
         android:ems="10"
         android:hint="Enter your class name"
-        android:inputType="textPersonName" />
+        android:inputType="textPersonName"
+        />
 
     <Button
         android:id="@+id/buttonProfessorSignout"
