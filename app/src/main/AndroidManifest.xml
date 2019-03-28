@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".postCommentsActivity"></activity>
+        <activity android:name=".AttendaneActivity"></activity>
+        <activity android:name=".postCommentsActivity" />
         <activity
             android:name=".AnswerPostActivity"
             android:label="@string/title_activity_answer_post"

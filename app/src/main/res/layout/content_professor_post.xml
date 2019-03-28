@@ -47,18 +47,6 @@
         android:textSize="@dimen/font_size_large"
         />
 
-    <Button
-        android:id="@+id/buttonProfessorRecord"
-        android:layout_width="136dp"
-        android:layout_height="37dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="560dp"
-        android:layout_marginEnd="275dp"
-        android:layout_marginRight="275dp"
-        android:text="Record " />
-
     <android.support.v7.widget.RecyclerView
         android:id="@+id/Professor_question_list"
         android:layout_width="match_parent"
@@ -74,31 +62,19 @@
 
 
     <Button
-        android:id="@+id/buttonProfessorPost"
-        android:layout_width="132dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="273dp"
-        android:layout_marginLeft="273dp"
-        android:layout_marginTop="538dp"
-        android:text="New Post" />
-
-    <Button
         android:id="@+id/buttonProfessorViewHistory"
         android:layout_width="132dp"
         android:layout_height="37dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="277dp"
-        android:layout_marginRight="277dp"
-        android:layout_marginBottom="45dp"
+        android:layout_marginEnd="279dp"
+        android:layout_marginRight="279dp"
+        android:layout_marginBottom="3dp"
         android:text="View History" />
 
     <TextView
-        android:id="@+id/textViewProfessorAttendance"
+        android:id="@+id/textViewAttendCode"
         android:layout_width="131dp"
         android:layout_height="40dp"
         android:layout_alignParentStart="true"
@@ -107,19 +83,19 @@
         android:layout_marginStart="3dp"
         android:layout_marginLeft="3dp"
         android:layout_marginBottom="84dp"
-        android:text="Attendance"
+        android:text="Code"
         android:textSize="@dimen/font_size_medium" />
 
     <Button
-        android:id="@+id/buttonProfessorClean"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
+        android:id="@+id/ButtonRecord"
+        android:layout_width="136dp"
+        android:layout_height="37dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="158dp"
-        android:layout_marginRight="158dp"
-        android:layout_marginBottom="75dp"
-        android:text="Clean" />
+        android:layout_marginStart="1dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginBottom="44dp"
+        android:text="Record OFF" />
 
 </RelativeLayout>

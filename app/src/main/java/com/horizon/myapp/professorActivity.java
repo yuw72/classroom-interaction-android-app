@@ -70,7 +70,6 @@ public class professorActivity extends AppCompatActivity implements View.OnClick
         }
         final DatabaseReference myRef  = FirebaseDatabase.getInstance().getReference("Classes");
 
-
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -103,7 +102,7 @@ public class professorActivity extends AppCompatActivity implements View.OnClick
 
         final DatabaseReference myRef  = FirebaseDatabase.getInstance().getReference("Classes");
 
-        myRef.addValueEventListener(new ValueEventListener() {
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if(dataSnapshot.child(className).exists()) {
@@ -130,7 +129,10 @@ public class professorActivity extends AppCompatActivity implements View.OnClick
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("Classes");
 
         try {
-            mDatabase.child(className).child("id").setValue(1);
+            mDatabase.child(className).child("Record").setValue(0);
+            mDatabase.child(className).child("Attendance").child("Name").setValue("Count");
+            mDatabase.child(className).child("Questions").child("test").child("question").setValue("ignore");
+            mDatabase.child(className).child("AttendanceCode").setValue("0000");
         } catch (Exception e) {
             e.printStackTrace();
         }

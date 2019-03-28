@@ -60,13 +60,13 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/question_list"
         android:layout_width="match_parent"
-        android:layout_height="465dp"
+        android:layout_height="410dp"
         android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="0dp"
-        android:layout_marginTop="64dp"
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="0dp">
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="64dp">
 
     </android.support.v7.widget.RecyclerView>
 
@@ -83,4 +83,18 @@
         android:layout_marginLeft="271dp"
         android:layout_marginTop="534dp"
         android:text="New Post" />
+
+    <EditText
+        android:id="@+id/editTextAttendPassword"
+        android:layout_width="203dp"
+        android:layout_height="35dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginBottom="84dp"
+        android:ems="10"
+        android:hint="Enter Attendance @android:string/emptyPhoneNumber"
+        android:inputType="numberPassword" />
 </RelativeLayout>

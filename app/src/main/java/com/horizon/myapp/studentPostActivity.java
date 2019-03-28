@@ -1,5 +1,6 @@
 package com.horizon.myapp;
 
+import android.arch.core.executor.DefaultTaskExecutor;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -9,24 +10,34 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class studentPostActivity extends AppCompatActivity implements View.OnClickListener{
     private Button buttonSignout;
     private Button buttonPost;
     private Button buttonAttendance;
     private TextView textViewClassName;
+    private EditText editTextAttendPassword;
     private FirebaseAuth firebaseAuth;
     private DatabaseReference mDatabase;
     private RecyclerView mQuestionList;
+    private String className;
+    private String user = globalVar.user;
 
 
     @Override
@@ -36,8 +47,7 @@ public class studentPostActivity extends AppCompatActivity implements View.OnCli
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         Intent intent = getIntent();
-        String className = intent.getStringExtra("result");
-//        String className = globalVar.className;
+        className = intent.getStringExtra("result");
         firebaseAuth = FirebaseAuth.getInstance();
 
         FloatingActionButton backButton = findViewById(R.id.floatingActionButtonBack);
@@ -57,7 +67,7 @@ public class studentPostActivity extends AppCompatActivity implements View.OnCli
         buttonPost = (Button)findViewById(R.id.buttonPost);
         buttonSignout = (Button)findViewById(R.id.buttonSignout);
         textViewClassName = (TextView)findViewById(R.id.textViewClassName);
-
+        editTextAttendPassword = (EditText)findViewById(R.id.editTextAttendPassword);
         buttonAttendance.setOnClickListener(this);
         buttonPost.setOnClickListener(this);
         buttonSignout.setOnClickListener(this);
@@ -70,15 +80,15 @@ public class studentPostActivity extends AppCompatActivity implements View.OnCli
     protected void onStart() {
         super.onStart();
 
-       FirebaseRecyclerAdapter<QuestionList,QuestionListViewHolder> firebaseRecyclerAdapter=new FirebaseRecyclerAdapter<QuestionList, QuestionListViewHolder>(
+       FirebaseRecyclerAdapter<QuestionList,QuestionListViewHolder2> firebaseRecyclerAdapter=new FirebaseRecyclerAdapter<QuestionList, QuestionListViewHolder2>(
                QuestionList.class,
                R.layout.post,
-               QuestionListViewHolder.class,
+               QuestionListViewHolder2.class,
                mDatabase
 
        ) {
            @Override
-           protected void populateViewHolder(QuestionListViewHolder viewHolder, QuestionList model, int position) {
+           protected void populateViewHolder(QuestionListViewHolder2 viewHolder, QuestionList model, int position) {
                 viewHolder.setQuestion(model.getQuestion());
            }
        };
@@ -104,6 +114,95 @@ public class studentPostActivity extends AppCompatActivity implements View.OnCli
 
     }
 
+    private void add_attendance(String className){
+        final String attendanceCode = editTextAttendPassword.getText().toString().trim();
+
+        if ( TextUtils.isEmpty(attendanceCode)) {
+            Toast.makeText(this, "please enter password", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        DatabaseReference myRef = FirebaseDatabase.getInstance().getReference().child("Classes").child(className);
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                long isOpen = 0;
+                for(DataSnapshot ds : dataSnapshot.getChildren()) {
+                    if(ds.getKey().equals("Record")){
+                        isOpen = (long)ds.getValue();
+                        Log.d("is open = ", String.valueOf(isOpen));
+                        break;
+                    }
+
+                }
+                if(isOpen==1){
+                    check_code(attendanceCode);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    private void check_code(final String code){
+        final DatabaseReference myDatabase = FirebaseDatabase.getInstance().getReference().child("Classes").child(className).child("AttendanceCode");
+        myDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String passwrd = dataSnapshot.getValue(String.class);
+                if(passwrd.equals(code)){
+                    attend();
+                }
+                else{
+                    Toast.makeText(studentPostActivity.this, "Wrong Attendance Code, Please enter again", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.w("database error", "loadPost:onCancelled", databaseError.toException());
+            }
+        });
+    }
+
+    private void attend(){
+        final DatabaseReference myRef = FirebaseDatabase.getInstance().getReference().child("Classes").child(className).child("Attendance");;
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                int is_Found = 0;
+                long curr_cnt = 0;
+                for (DataSnapshot childSnapshot : dataSnapshot.getChildren()){
+                    if(childSnapshot.getKey().equals(user)){
+                        curr_cnt = (long) childSnapshot.getValue();
+                        is_Found = 1;
+                        break;
+                    }
+                }
+
+                if(is_Found == 1){
+                    //change to new count = old_count++;
+                    curr_cnt++;
+                    Log.d("crr count is ", String.valueOf(curr_cnt));
+                    myRef.child(user).setValue(curr_cnt);
+                }
+                else{
+                    Log.d("is found",String.valueOf(is_Found));
+                    myRef.child(user).setValue(1);
+                }
+                return;
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.w("database error", "loadPost:onCancelled", databaseError.toException());
+            }
+        });
+    }
+
     @Override
     public void onClick(View view) {
         if(view == buttonSignout)
@@ -113,11 +212,13 @@ public class studentPostActivity extends AppCompatActivity implements View.OnCli
             startActivity(new Intent(this, LoginActivity.class));
         }
         else if(view == buttonAttendance){
-
+            add_attendance(className);
         }
         else if(view == buttonPost)
         {
-
+            Intent classIntent = new Intent(getApplicationContext(), postCommentsActivity.class);
+            globalVar.className = className;
+            startActivity(classIntent);
         }
     }
 }

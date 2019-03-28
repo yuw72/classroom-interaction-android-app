@@ -88,11 +88,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         }
                     }
                 });
-
-        //Toast.makeText(this, "email or password is incorrect", Toast.LENGTH_SHORT).show();
     }
 
     private void userRole(String username) {
+        final String user = username;
         DatabaseReference myRef  = FirebaseDatabase.getInstance().getReference("roles").child(username);
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -102,10 +101,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 Log.d("role value is", "cmp_role is" + cmp_role);
                 if(cmp_role == 1) {
                     //start profile activity
+                    globalVar.user = user;
+                    Log.i("global user is ", globalVar.user);
                     finish();
                     startActivity(new Intent(getApplicationContext(), professorActivity.class));
                 }
                 else{
+                    globalVar.user = user;
                     finish();
                     startActivity(new Intent(getApplicationContext(),studentActivity.class));
 

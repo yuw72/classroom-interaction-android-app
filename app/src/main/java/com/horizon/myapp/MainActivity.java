@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         firebaseAuth = FirebaseAuth.getInstance();
         if(firebaseAuth.getCurrentUser()!= null) {
             finish();
-            startActivity(new Intent(getApplicationContext(), professorActivity.class));
+            startActivity(new Intent(getApplicationContext(), studentActivity.class));
         }
         progressDialog = new ProgressDialog(this);
 
@@ -115,8 +115,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         progressDialog.dismiss();
                         if(task.isSuccessful()){
-                            finish();
-                            startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+                            if(checkBoxProfessor.isChecked()){
+                                finish();
+                                startActivity(new Intent(getApplicationContext(), professorActivity.class));
+                            }else{
+                                finish();
+                                startActivity(new Intent(getApplicationContext(), studentActivity.class));
+                            }
+
+
                         }else{
 
 
