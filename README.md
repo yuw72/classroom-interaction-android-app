@@ -1,5 +1,5 @@
 <h1>Classroom-interaction Android Application Guide</h1>
-<h2> Let's go through how this app works</h2>
+<h2> This app is a practice to develop an mobile app that combines Piazza and TopHat. Let's go through how this app works</h2>
 
 <h3>1. Authentification</h3>
 
