@@ -2,4 +2,4 @@
 #                 Under editing, Will finish after final
 
 ![GitHub Logo](/images/database.JPG)
-Format: ![Alt Text]|width=100(url)
+Format: ![Alt Text]=100x100(url)
