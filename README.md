@@ -38,5 +38,94 @@
 <p align="center">
 <img src="https://github.com/yuw72/classroom-interaction-android-app/blob/master/images/professor/ProfessorOpenPool.JPG" height="300" width="200">
 </p>
-<p align="center">Professor can press the toggle switch from "Record Off" to "Record On" and vice versa. Then a four digit number will be generated above the button </p>
+<p align="center">Professor can open the attendance pool by pressing the toggle switch from "Record Off" to "Record On" and vice versa. Then a four digit number will be generated above the button. This four digit number is the key for students to check in the class</p>
+
+<h3>3. Student Account</h3>
+<p> Let's temporarily switch to introduce student's account to better understand the app.</p>
+
+<br/><br/>
+<p align="center">
+<img src="https://github.com/yuw72/classroom-interaction-android-app/blob/master/images/student/StudentJoinClass.JPG" height="300" width="200">
+</p>
+<p align="center">After a student sign in as a student account, he is able to join any of the classes created by professors.</p>
+
+<br/><br/>
+<p align="center">
+<img src="https://github.com/yuw72/classroom-interaction-android-app/blob/master/images/student/StudentClassUIHighLight.JPG" height="300" width="200">
+</p>
+<p align="center">Then the student will be directed to the UI of that class. There are three functions:1. post questions in the class. 2. swipe the screen and read all questions. 3. Record his/her attendance</p>
+
+<h4>1. Post Comment</h4>
+<p align="center">
+<img src="https://github.com/yuw72/classroom-interaction-android-app/blob/master/images/student/StudentPostQuestion.JPG" height="300" width="200">
+</p>
+<p align="center">After pressing the button "New Post", the student will be directed to a new UI. In this UI, the student can enter his/her questions and press "submit" button to share in the class.</p>
+
+<h4>2. Swipe the screen and Read Comment</h4>
+<br/><br/>
+<p align="center">
+<img src="https://github.com/yuw72/classroom-interaction-android-app/blob/master/images/student/StudentScrollComment.JPG" height="300" width="200">
+</p>
+<p align="center">If there are multiple questions being asked, the student can swipe the screen to read another questions</p>
+
+<h4>3. Record Attendance</h4>
+<br/><br/>
+<p align="center">
+<img src="https://github.com/yuw72/classroom-interaction-android-app/blob/master/images/student/StudentRecordAttendance.JPG" height="300" width="200">
+</p>
+<p align="center">Students need to enter the correct four-digit number to successfully check-in the class</p>
+
+<h3> 4. Come back to Professor's Account</h3>
+<h4>1. Answer questions</h4>
+<p align="center">
+<img src="https://github.com/yuw72/classroom-interaction-android-app/blob/master/images/professor/ProfessorComment.JPG" height="300" width="200">
+</p>
+<p align="center">Professor can view the questions that students posted and comment on these questions</p>
+
+<br></br>
+<p align="center">
+<img src="https://github.com/yuw72/classroom-interaction-android-app/blob/master/images/professor/ProfessorCommentResult.JPG" height="300" width="200">
+</p>
+<p align="center">Here shows how the professor will comment on those questions.</p>
+
+<h4> 2. View Attendance Summary</h4>
+<br></br>
+<p align="center">
+<img src="https://github.com/yuw72/classroom-interaction-android-app/blob/master/images/professor/ProfessorViewAttendance.JPG" height="300" width="200">
+</p>
+<p align="center">Here shows how the professor will comment on those questions.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
