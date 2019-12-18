@@ -22,7 +22,7 @@
 
 <br/><br/>
 <p align="center">
-<img src="https://github.com/yuw72/classroom-interaction-android-app/blob/master/images/Professor Join or Create Class.JPG" height="300" width="200">
+<img src="https://github.com/yuw72/classroom-interaction-android-app/blob/master/images/professor/ProfessorJoinOrCreateClass.JPG" height="300" width="200">
 </p>
 <p align="center"> Users can also log in with an existing account.</p>
 
