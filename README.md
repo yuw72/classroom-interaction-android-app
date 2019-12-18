@@ -93,8 +93,19 @@
 <p align="center">
 <img src="https://github.com/yuw72/classroom-interaction-android-app/blob/master/images/professor/ProfessorViewAttendance.JPG" height="300" width="200">
 </p>
-<p align="center">Here shows how the professor will comment on those questions.</p>
+<p align="center">By pressing the button "View Attendance", it will direct the professor to a new UI.</p>
 
+<br></br>
+<p align="center">
+<img src="https://github.com/yuw72/classroom-interaction-android-app/blob/master/images/professor/ProfessorCommentResult.JPG" height="300" width="200">
+</p>
+<p align="center">Here it shows All the student's name and the number of their attendance</p>
+
+<h3> At Last</h3>
+<p>To sign out, simply press the "Sign Out" button on the right corner of the UI, and then users will be directed back to login page.
+<p align="center">
+<img src="https://github.com/yuw72/classroom-interaction-android-app/blob/master/images/signIn.JPG" height="300" width="200">
+</p>
 
 
 
