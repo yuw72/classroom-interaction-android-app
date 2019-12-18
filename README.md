@@ -97,7 +97,7 @@
 
 <br></br>
 <p align="center">
-<img src="https://github.com/yuw72/classroom-interaction-android-app/blob/master/images/professor/ProfessorCommentResult.JPG" height="300" width="200">
+<img src="https://github.com/yuw72/classroom-interaction-android-app/blob/master/images/professor/ProfessorAttendanceResult.JPG" height="300" width="200">
 </p>
 <p align="center">Here it shows All the student's name and the number of their attendance</p>
 
