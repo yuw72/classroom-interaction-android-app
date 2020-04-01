@@ -14,11 +14,7 @@
 </p>
 <p align="center"> Users can also log in with an existing account.</p>
 
-<br/><br/>
-<p align="center">
-<img src="https://github.com/yuw72/classroom-interaction-android-app/blob/master/images/authentification_firebase.JPG" height="300" width="450">|<img src="https://github.com/yuw72/classroom-interaction-android-app/blob/master/images/database.JPG" height="300" width="350">
-</p>
-<p align="center">This is how I arrange the database.</p>
+
 
 <h3>2. Professor's Account</h3>
 
